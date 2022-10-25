@@ -1,0 +1,3 @@
+<resources>
+    <attr name="myAttrColorPrimary" format="reference"/>
+</resources>

@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/app_bar_favorites"
+        android:icon="@drawable/ic_action_name"
+        android:title="Избранное"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/app_bar_settings"
+        android:icon="@drawable/ic_settings"
+        android:title="Настройки"
+        app:showAsAction="ifRoom" />
+</menu>
