@@ -12,15 +12,17 @@ import retrofit2.Response
 
 class MainViewModel(
     private val liveDataToObserve: MutableLiveData<Any> = MutableLiveData()) : ViewModel() {
-    fun getDataNasaFromViewModel(): LiveData<Any> {
+    fun getDataNasaFromViewModel(needData: String): LiveData<Any> {
         RetrofitNasa().getDataNasa(
+            needData,
             object : Callback<ModelRetrofitNasa> {
                 override fun onFailure(call: Call<ModelRetrofitNasa>, t: Throwable) { // если ошибка
-                    println("*** in MainViewModel onFailure $t")
+                    println("*** in MainViewModel ошибка Retrofit: $t")
                 }
                 // если ошибок нет, ответ получен
                 override fun onResponse(call: Call<ModelRetrofitNasa>, response: Response<ModelRetrofitNasa>) {
                     val listData = response.body()
+                    println("**** response.body() ${response.body()}")
                     liveDataToObserve.value = listData
                 }
             })

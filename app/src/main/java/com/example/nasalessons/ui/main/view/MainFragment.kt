@@ -1,24 +1,24 @@
 package com.example.nasalessons.ui.main.view
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.*
-import androidx.fragment.app.Fragment
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.viewpager.widget.ViewPager
 import com.example.nasalessons.R
 import com.example.nasalessons.databinding.MainFragmentBinding
 import com.example.nasalessons.ui.main.model.ModelRetrofitNasa
+import com.example.nasalessons.ui.main.model.ViewPagerAdapter
 import com.example.nasalessons.ui.main.viewmodel.MainViewModel
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.bottom_sheet.*
 import kotlinx.android.synthetic.main.main_fragment.*
+import me.relex.circleindicator.CircleIndicator
+
 
 class MainFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = MainFragment()
-    }
 
     private val viewModel: MainViewModel by lazy {
         ViewModelProvider.NewInstanceFactory().create(MainViewModel::class.java)
@@ -42,25 +42,20 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.viewPager.adapter = ViewPagerAdapter(childFragmentManager) // установка ViewPager
+
+        val indicator = view.findViewById(R.id.indicator) as CircleIndicator // установка индикатора перемотки (точек)
+        indicator.setViewPager(binding.viewPager)
+
+        // скрыл BottomAppBar чтобы не мешал
+        bottom_app_bar.visibility = View.GONE
+        fab.visibility = View.GONE
+
         setBottomSheetBehavior(view.findViewById(R.id.bottom_sheet_container)) // BottomSheet
         fab.setOnClickListener { // показывать BottomSheet по нажатию fab
             bottomSheetBehavior.state = BottomSheetBehavior.STATE_HALF_EXPANDED
         }
-
         setBottomAppBar(view) // показать кнопки Избранное и Настройки в BottomAppBar
-
-        viewModel.getDataNasaFromViewModel() // подписываюсь на изменения liveData получение картинки
-            .observe(viewLifecycleOwner) { renderData(it) }
-    }
-
-    private fun renderData(data: Any) {
-        data as ModelRetrofitNasa
-        bottomSheetDescription.text = data.explanation
-
-        Picasso
-            .get()
-            .load(data.url)
-            .into(binding.pictureOfDayView);
     }
 
     override fun onDestroyView() {
@@ -106,6 +101,11 @@ class MainFragment : Fragment() {
         setHasOptionsMenu(true)
     }
 
+    companion object {
+        fun newInstance() = MainFragment()
+        var instance: MainFragment? = null
+
+    }
 
 }
 

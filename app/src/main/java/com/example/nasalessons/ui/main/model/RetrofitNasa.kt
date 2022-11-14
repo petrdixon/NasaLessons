@@ -19,8 +19,8 @@ class RetrofitNasa {
         )
         .build().create(RetrofitInterface::class.java) // указываем интерфейс
 
-    fun getDataNasa(callback: Callback<ModelRetrofitNasa>) {
+    fun getDataNasa(needData: String, callback: Callback<ModelRetrofitNasa>) {
         val apiKey: String = BuildConfig.NASA_API_KEY // получили ключ из properties
-        retrofitBuilder.getData(apiKey).enqueue(callback) // retrofit сам обращается к функции getTop250() в интерфейсе
+        retrofitBuilder.getData(apiKey, needData).enqueue(callback) // retrofit сам обращается к функции getData() в интерфейсе
     }
 }

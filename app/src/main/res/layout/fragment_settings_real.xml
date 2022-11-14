@@ -1,39 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.main.view.SettingsRealFragment"
-    app:backgroundTint="?attr/colorSecondary">
+    app:backgroundTint="?attr/colorSecondary"
+    tools:context=".ui.main.view.SettingsRealFragment">
 
-    <com.google.android.material.chip.ChipGroup
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chipLight"
+        <com.google.android.material.chip.ChipGroup
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checkable = "true"
-            app:chipBackgroundColor="?attr/myAttrColorPrimary"
-            android:text="Light theme"/>
+            android:layout_height="wrap_content">
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chipDark"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checkable="true"
-            app:chipBackgroundColor="?attr/myAttrColorPrimary"
-            android:text="Dark theme"/>
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipLight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:text="Light theme"
+                app:chipBackgroundColor="?attr/myAttrColorPrimary" />
 
-    </com.google.android.material.chip.ChipGroup>
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipDark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:text="Dark theme"
+                app:chipBackgroundColor="?attr/myAttrColorPrimary" />
+
+        </com.google.android.material.chip.ChipGroup>
+    </LinearLayout>
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottom_app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
+        android:layout_gravity="top"
         app:backgroundTint="?attr/myAttrColorPrimary"
         app:fabAlignmentMode="center"
         app:navigationIcon="@drawable/ic_hamburger_menu_bottom_bar" />
