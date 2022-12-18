@@ -1,13 +1,14 @@
 package com.example.nasalessons.ui.main.view
 
+import android.animation.ObjectAnimator
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.fragment.app.Fragment
+import android.widget.Button
 import com.example.nasalessons.R
-
+import kotlinx.android.synthetic.main.fragment_mars.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -16,10 +17,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [PictureTodayFragment.newInstance] factory method to
+ * Use the [MarsFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class PictureTodayFragment : Fragment() {
+class MarsFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -37,14 +38,23 @@ class PictureTodayFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_picture_today, container, false)
+        return inflater.inflate(R.layout.fragment_mars, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val textView: TextView = view.findViewById(R.id.textview)
+        val button2: Button = view.findViewById(R.id.button2)
 
-        textView.text = param1
+        button2.setOnClickListener() {
+//            ObjectAnimator.ofFloat(button2, "translationX", 400f).apply {
+//                duration = 200
+//                start()
+
+            val objectAnimator = ObjectAnimator.ofFloat(button2, "translationX", 100f)
+            objectAnimator.duration = 1000
+            objectAnimator.start()
+
+        }
     }
 
     companion object {
@@ -54,12 +64,12 @@ class PictureTodayFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment EarthTodayFragment.
+         * @return A new instance of fragment MarsFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            PictureTodayFragment().apply {
+            MarsFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

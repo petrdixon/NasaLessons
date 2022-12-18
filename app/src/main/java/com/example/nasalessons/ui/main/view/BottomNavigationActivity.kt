@@ -16,15 +16,15 @@ class BottomNavigationActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.bottom_view_earth -> {
+                R.id.pictures_3_days -> {
                     Toast.makeText(this, "Earth", Toast.LENGTH_SHORT).show()
                     true
                 }
-                R.id.bottom_view_mars -> {
+                R.id.pictures_any_day -> {
                     Toast.makeText(this, "Mars", Toast.LENGTH_SHORT).show()
                     true
                 }
-                R.id.bottom_view_weather -> {
+                R.id.mars -> {
                     Toast.makeText(this, "Weather", Toast.LENGTH_SHORT).show()
                     true
                 }

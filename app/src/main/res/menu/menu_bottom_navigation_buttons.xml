@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/bottom_view_earth"
+        android:id="@+id/pictures_3_days"
         android:icon="@drawable/ic_archive"
-        android:title="Earth" />
+        android:title="Pictures 3 days" />
     <item
-        android:id="@+id/bottom_view_mars"
+        android:id="@+id/pictures_any_day"
+        android:icon="@drawable/ic_archive"
+        android:title="Pictures any day" />
+    <item
+        android:id="@+id/mars"
         android:icon="@drawable/ic_archive"
         android:title="Mars" />
-    <item
-        android:id="@+id/bottom_view_weather"
-        android:icon="@drawable/ic_archive"
-        android:title="Weather" />
 </menu>

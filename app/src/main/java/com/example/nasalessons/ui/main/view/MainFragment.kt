@@ -1,19 +1,18 @@
 package com.example.nasalessons.ui.main.view
 
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager.widget.ViewPager
 import com.example.nasalessons.R
 import com.example.nasalessons.databinding.MainFragmentBinding
-import com.example.nasalessons.ui.main.model.ModelRetrofitNasa
 import com.example.nasalessons.ui.main.model.ViewPagerAdapter
 import com.example.nasalessons.ui.main.viewmodel.MainViewModel
 import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.bottom_sheet.*
 import kotlinx.android.synthetic.main.main_fragment.*
 import me.relex.circleindicator.CircleIndicator
 
@@ -46,6 +45,41 @@ class MainFragment : Fragment() {
 
         val indicator = view.findViewById(R.id.indicator) as CircleIndicator // установка индикатора перемотки (точек)
         indicator.setViewPager(binding.viewPager)
+
+
+            // попытка подключить gif
+//        Glide.with(requireActivity()).load(R.drawable.fly_01).into(indicator)
+
+        binding.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            override fun onPageScrollStateChanged(state: Int) {
+//                onPageScrollStateChanged 0 - ничего не происходит, 1 - тянем, 2 - отпустили
+            }
+
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+//                onPageScrolled - от какой позиции приходят данные. positionOffsetPixels - на сколько пикселей сдвинулась
+                println("******** onPageScrolled $position")
+
+                // обработка перемещений лап в зависимости от позиции ViewPager и положения промотки
+                when (position) {
+                    0 -> pawMovie(paw_02, positionOffsetPixels)
+                    1 -> pawMovie(paw_03, positionOffsetPixels)
+                    2 -> pawMovie(paw_01, positionOffsetPixels)
+                }
+            }
+
+            override fun onPageSelected(position: Int) {
+//                println("******** onPageSelected $position")
+            }
+
+            // перемещение лап
+            fun pawMovie(pawNumber: AppCompatImageView, positionOffsetPixels: Int) {
+                println("******** positionOffsetPixels $positionOffsetPixels")
+                val objectAnimator =
+                    ObjectAnimator.ofFloat(pawNumber, "translationY", positionOffsetPixels * (-1) / 7.toFloat())
+                objectAnimator.duration = 1
+                objectAnimator.start()
+            }
+        })
 
         // скрыл BottomAppBar чтобы не мешал
         bottom_app_bar.visibility = View.GONE

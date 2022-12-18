@@ -1,53 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.view.PictureBeforeYesterdayFragment">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".ui.main.view.Pictures3DaysFragment">
 
         <TextView
             android:id="@+id/date_value"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="30dp"
             android:paddingStart="10dp"
+            android:paddingTop="30dp"
             android:paddingEnd="10dp"
+            android:text="Picture of day: "
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:text="Picture of day: "/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/pictureView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="0.5"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
             android:src="@drawable/icons8_refresh_480"
+            app:layout_constraintBottom_toTopOf="@+id/description"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/date_value"
-            app:layout_constraintBottom_toTopOf="@+id/description"/>
+            app:layout_constraintTop_toBottomOf="@+id/date_value" />
 
         <TextView
             android:id="@+id/description"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="0.4"
             android:layout_weight="2"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp"
             android:paddingStart="10dp"
+            android:paddingTop="20dp"
             android:paddingEnd="10dp"
+            android:paddingBottom="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pictureView"/>
-    </LinearLayout>
+            app:layout_constraintTop_toBottomOf="@+id/pictureView" />
 
-</FrameLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+

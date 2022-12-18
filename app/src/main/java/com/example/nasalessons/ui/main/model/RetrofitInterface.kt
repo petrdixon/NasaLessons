@@ -7,7 +7,6 @@ import retrofit2.http.Query
 
 
 interface RetrofitInterface {
-    //    @GET("planetary/apod")
     @GET("planetary/apod")
     fun getData(
 //        @Header("X-Yandex-API-Key") token: String, // значения для отправки хэдера в запросе

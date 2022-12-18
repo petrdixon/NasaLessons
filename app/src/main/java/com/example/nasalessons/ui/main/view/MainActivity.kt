@@ -1,13 +1,11 @@
 package com.example.nasalessons.ui.main.view
 
+import android.animation.ObjectAnimator
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.Toast
 import com.example.nasalessons.R
 import com.example.nasalessons.databinding.MainActivityBinding
-import kotlinx.android.synthetic.main.main_fragment.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -32,25 +30,29 @@ class MainActivity : AppCompatActivity() {
 
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.bottom_view_earth -> {
-                    Toast.makeText(this, "Earth", Toast.LENGTH_SHORT).show()
+                R.id.pictures_3_days -> {
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.container, MainFragment())
                         .commit()
 
                     true
                 }
-                R.id.bottom_view_mars -> {
-                    Toast.makeText(this, "Mars", Toast.LENGTH_SHORT).show()
+                R.id.pictures_any_day -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.container, PictureDatePickerFragment())
+                        .commit()
                     true
                 }
-                R.id.bottom_view_weather -> {
-                    Toast.makeText(this, "Weather", Toast.LENGTH_SHORT).show()
+                R.id.mars -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.container, MarsFragment())
+                        .commit()
                     true
                 }
                 else -> false
             }
         }
+
 
         // TODO временно скрыл нижние кнопки
 //        binding.bottomNavigationView.visibility = View.GONE

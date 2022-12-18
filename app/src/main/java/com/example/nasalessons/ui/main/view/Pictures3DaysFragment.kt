@@ -8,33 +8,29 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.nasalessons.R
-import com.example.nasalessons.databinding.FragmentPictureBeforeYesterdayBinding
+import com.example.nasalessons.databinding.FragmentPictures3daysBinding
 import com.example.nasalessons.ui.main.model.GetDate
 import com.example.nasalessons.ui.main.model.ModelRetrofitNasa
 import com.example.nasalessons.ui.main.viewmodel.MainViewModel
-import com.squareup.picasso.MemoryPolicy
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.fragment_picture_before_yesterday.*
-import java.text.SimpleDateFormat
-import java.util.*
+import kotlinx.android.synthetic.main.fragment_pictures_3days.*
 
 private const val NEED_DATE_PARAM1 = "needDateParam"
 
-class PictureBeforeYesterdayFragment : Fragment() {
+class Pictures3DaysFragment : Fragment() {
     private val viewModel: MainViewModel by lazy {
         ViewModelProvider.NewInstanceFactory().create(MainViewModel::class.java)
     }
     private var needDate: String = GetDate().getDate(2)
-    private var _binding: FragmentPictureBeforeYesterdayBinding? = null
+    private var _binding: FragmentPictures3daysBinding? = null
     private val binding get() = _binding!!
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view = inflater.inflate(R.layout.fragment_picture_before_yesterday, container, false)
-        _binding = FragmentPictureBeforeYesterdayBinding.bind(view)
+        val view = inflater.inflate(R.layout.fragment_pictures_3days, container, false)
+        _binding = FragmentPictures3daysBinding.bind(view)
         return binding.root
     }
 
@@ -48,7 +44,6 @@ class PictureBeforeYesterdayFragment : Fragment() {
         // подписываюсь на изменения liveData, передаю нужную дату
         viewModel.getDataNasaFromViewModel(needDate)
             .observe(viewLifecycleOwner) { renderData(it) }
-
     }
 
     private fun renderData(data: Any) {
@@ -75,7 +70,7 @@ class PictureBeforeYesterdayFragment : Fragment() {
     companion object {
         @JvmStatic
         fun newInstance(needDate: String) =
-            PictureBeforeYesterdayFragment().apply {
+            `Pictures3DaysFragment`().apply {
                 arguments = Bundle().apply {
                     putString(NEED_DATE_PARAM1, needDate)
                 }
