@@ -46,10 +46,6 @@ class MarsFragment : Fragment() {
         val button2: Button = view.findViewById(R.id.button2)
 
         button2.setOnClickListener() {
-//            ObjectAnimator.ofFloat(button2, "translationX", 400f).apply {
-//                duration = 200
-//                start()
-
             val objectAnimator = ObjectAnimator.ofFloat(button2, "translationX", 100f)
             objectAnimator.duration = 1000
             objectAnimator.start()

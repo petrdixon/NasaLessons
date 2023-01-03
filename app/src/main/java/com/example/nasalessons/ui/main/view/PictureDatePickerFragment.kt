@@ -1,21 +1,15 @@
 package com.example.nasalessons.ui.main.view
 
-import android.animation.Animator
-import android.animation.ObjectAnimator
-import android.animation.ValueAnimator.INFINITE
 import android.icu.util.Calendar
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
+import android.transition.*
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AccelerateDecelerateInterpolator
-import android.view.animation.LinearInterpolator
 import android.widget.*
 import androidx.cardview.widget.CardView
 import androidx.coordinatorlayout.widget.CoordinatorLayout
-import androidx.core.view.ViewCompat
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.nasalessons.R
@@ -25,10 +19,10 @@ import com.example.nasalessons.ui.main.viewmodel.MainViewModel
 import com.google.android.material.animation.AnimationUtils
 import com.google.android.material.behavior.SwipeDismissBehavior
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.animation_frag_date_picker.*
 import kotlinx.android.synthetic.main.fragment_picture_date_picker.*
 import kotlinx.android.synthetic.main.fragment_picture_date_picker.date_value
-import kotlinx.android.synthetic.main.fragment_picture_date_picker.description
-import kotlinx.android.synthetic.main.fragment_pictures_3days.*
+
 import java.time.LocalDate
 
 
@@ -101,6 +95,7 @@ class PictureDatePickerFragment : Fragment() {
             override fun onDismiss(view: View?) { // то, что происходит после смахивания CardView
                 Toast.makeText(view?.context, "Card swiped !!", Toast.LENGTH_SHORT).show()
             }
+
             override fun onDragStateChanged(state: Int) {}
         }
         val mCardView = swipe_card.findViewById<CardView>(R.id.swipe_card)
@@ -118,17 +113,29 @@ class PictureDatePickerFragment : Fragment() {
 
     private fun renderData(data: Any) {
         data as ModelRetrofitNasa
+
+        // анимация появления картинки и выплывания текста
+        val rootView: CardView = requireView().findViewById(R.id.swipe_card)
+        val scene = Scene.getSceneForLayout(rootView, R.layout.animation_frag_date_picker, context)
+        val imageFadeTransition = Fade().addTarget(R.id.pictureViewDP)
+        val textSlideTransition = Slide().addTarget(R.id.descriptionDP)
+        val customAnimTransition = TransitionSet().apply {
+            duration = 1000L // 1 sec
+            addTransition(imageFadeTransition)
+            addTransition(textSlideTransition)
+        }
+        TransitionManager.go(scene, customAnimTransition)
+
+        // вывод картинки и текста из NASA
         date_value.text = "Picture of day: $needDate"
-        // вывод текста NASA
-        description.text = data.explanation
-        description.movementMethod = ScrollingMovementMethod()
+        descriptionDP.text = data.explanation
+        descriptionDP.movementMethod = ScrollingMovementMethod()
         // вывод картинки
+        pictureViewDP.adjustViewBounds = true // настройка границ, чтобы картинка прижалась к верхнему краю CardView
         Picasso
             .get()
             .load(data.url)
-            .into(binding.pictureView)
-
-        date_value.text = "Picture of day: $needDate"
+            .into(pictureViewDP)
     }
 
     override fun onDestroyView() {

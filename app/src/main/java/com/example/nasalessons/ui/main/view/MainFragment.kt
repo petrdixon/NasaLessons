@@ -46,10 +46,6 @@ class MainFragment : Fragment() {
         val indicator = view.findViewById(R.id.indicator) as CircleIndicator // установка индикатора перемотки (точек)
         indicator.setViewPager(binding.viewPager)
 
-
-            // попытка подключить gif
-//        Glide.with(requireActivity()).load(R.drawable.fly_01).into(indicator)
-
         binding.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {
 //                onPageScrollStateChanged 0 - ничего не происходит, 1 - тянем, 2 - отпустили
@@ -57,7 +53,6 @@ class MainFragment : Fragment() {
 
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
 //                onPageScrolled - от какой позиции приходят данные. positionOffsetPixels - на сколько пикселей сдвинулась
-                println("******** onPageScrolled $position")
 
                 // обработка перемещений лап в зависимости от позиции ViewPager и положения промотки
                 when (position) {
@@ -68,12 +63,10 @@ class MainFragment : Fragment() {
             }
 
             override fun onPageSelected(position: Int) {
-//                println("******** onPageSelected $position")
             }
 
             // перемещение лап
             fun pawMovie(pawNumber: AppCompatImageView, positionOffsetPixels: Int) {
-                println("******** positionOffsetPixels $positionOffsetPixels")
                 val objectAnimator =
                     ObjectAnimator.ofFloat(pawNumber, "translationY", positionOffsetPixels * (-1) / 7.toFloat())
                 objectAnimator.duration = 1

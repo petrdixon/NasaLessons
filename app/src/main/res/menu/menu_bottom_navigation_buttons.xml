@@ -3,13 +3,17 @@
     <item
         android:id="@+id/pictures_3_days"
         android:icon="@drawable/ic_archive"
-        android:title="Pictures 3 days" />
+        android:title="3 days" />
     <item
         android:id="@+id/pictures_any_day"
         android:icon="@drawable/ic_archive"
-        android:title="Pictures any day" />
+        android:title="Any day" />
     <item
         android:id="@+id/mars"
         android:icon="@drawable/ic_archive"
         android:title="Mars" />
+    <item
+        android:id="@+id/animation"
+        android:icon="@drawable/ic_archive"
+        android:title="Anim" />
 </menu>

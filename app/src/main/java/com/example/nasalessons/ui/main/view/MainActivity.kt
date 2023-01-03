@@ -34,7 +34,6 @@ class MainActivity : AppCompatActivity() {
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.container, MainFragment())
                         .commit()
-
                     true
                 }
                 R.id.pictures_any_day -> {
@@ -46,6 +45,12 @@ class MainActivity : AppCompatActivity() {
                 R.id.mars -> {
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.container, MarsFragment())
+                        .commit()
+                    true
+                }
+                R.id.animation -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.container, AnimationsFragment())
                         .commit()
                     true
                 }
