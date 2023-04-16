@@ -11,16 +11,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NasaLessons">
-        <activity android:name=".ui.main.view.BottomNavigationActivity"></activity>
+
         <activity
-            android:name=".ui.main.view.MainActivity"
+            android:name=".ui.main.view.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
         </activity>
+
+        <activity android:name=".ui.main.view.BottomNavigationActivity" />
+
+        <activity
+            android:name=".ui.main.view.MainActivity"
+>
+        </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

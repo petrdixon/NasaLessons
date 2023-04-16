@@ -46,11 +46,11 @@ class MainFragment : Fragment() {
         val indicator = view.findViewById(R.id.indicator) as CircleIndicator // установка индикатора перемотки (точек)
         indicator.setViewPager(binding.viewPager)
 
+        // ПРИ ПЕРЕЛИСТЫВАНИИ ViewPager ЭЛЕМЕНТЫ С АНИМАЦИЕЙ НАПЛЫВАЮТ НА ТОЧКИ/ИНДИКАТОРЫ ПЕРЕМОТКИ
         binding.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {
 //                onPageScrollStateChanged 0 - ничего не происходит, 1 - тянем, 2 - отпустили
             }
-
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
 //                onPageScrolled - от какой позиции приходят данные. positionOffsetPixels - на сколько пикселей сдвинулась
 

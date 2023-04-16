@@ -1,6 +1,7 @@
 package com.example.nasalessons.ui.main.view
 
 import android.os.Bundle
+import android.os.Parcelable
 import android.text.method.ScrollingMovementMethod
 import android.view.LayoutInflater
 import android.view.View
@@ -37,7 +38,16 @@ class Pictures3DaysFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // достаю сохраненную нужную дату, полученную через newInstance
+        // Если есть, использую данные nasa, полученные в SplashActivity и переданные в MainActivity
+        val dataFromIntent = activity?.intent?.getBundleExtra("data")
+        dataFromIntent?.let {
+            val dataFromBundle = dataFromIntent.getParcelable<Parcelable>("data")
+            println("*********** in 3DayFrag intent $dataFromBundle")
+            showDataOnPage(dataFromBundle as Any)
+            activity?.intent?.removeExtra("data")
+        }
+
+        // Если нет, достаю сохраненную нужную дату, полученную через newInstance
         arguments?.let {
             needDate = it.getString(NEED_DATE_PARAM1).toString()
         }
@@ -47,8 +57,11 @@ class Pictures3DaysFragment : Fragment() {
     }
 
     private fun renderData(data: Any) {
-        data as ModelRetrofitNasa
+        showDataOnPage(data)
+    }
 
+    fun showDataOnPage(data: Any) {
+        data as ModelRetrofitNasa
         // вывод текста
         description.text = data.explanation
         description.movementMethod = ScrollingMovementMethod()
@@ -61,6 +74,7 @@ class Pictures3DaysFragment : Fragment() {
 
         date_value.text = "Picture of day: $needDate"
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

@@ -1,9 +1,9 @@
 package com.example.nasalessons.ui.main.view
 
-import android.animation.ObjectAnimator
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Parcelable
+import androidx.appcompat.app.AppCompatActivity
 import com.example.nasalessons.R
 import com.example.nasalessons.databinding.MainActivityBinding
 
@@ -58,9 +58,14 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-
         // TODO временно скрыл нижние кнопки
 //        binding.bottomNavigationView.visibility = View.GONE
+
+//
+//        var mlist: List<DataNote> = mutableListOf(
+//            DataNote("test1", "test2"),
+//            DataNote("test3", "test4")
+//        )
 
     }
 }

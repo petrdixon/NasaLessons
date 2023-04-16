@@ -22,8 +22,4 @@ class ViewPagerAdapter(fragmentManager: FragmentManager) :
         return super.getItemPosition(`object`)
     }
 
-
-//    companion object {
-//        val currentPositionViewPager = ViewPagerAdapter().count
-//    }
 }
